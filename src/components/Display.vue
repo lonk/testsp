@@ -9,16 +9,34 @@
       <span class="sp-employee__actions">Action</span>
     </div>
     <div class="sp-employees">
-      <div class="sp-employee" v-for="employee in displayedEmployees">
+      <div
+        class="sp-employee"
+        v-for="employee in displayedEmployees"
+        :key="employee.index"
+      >
         <template v-if="modifiedEmployee.index === employee.index">
           <form @submit="validateEdition(modifiedEmployee)">
-            <span class="sp-employee__row"><input type="text" v-model="modifiedEmployee.first_name" /></span>
-            <span class="sp-employee__row"><input type="text" v-model="modifiedEmployee.last_name" /></span>
-            <span class="sp-employee__row"><input type="text" v-model="modifiedEmployee.gender" /></span>
-            <span class="sp-employee__row"><input type="text" v-model="modifiedEmployee.mail" /></span>
-            <span class="sp-employee__row"><input type="text" v-model="modifiedEmployee.phone" /></span>
+            <span class="sp-employee__row"
+              ><input type="text" v-model="modifiedEmployee.first_name"
+            /></span>
+            <span class="sp-employee__row"
+              ><input type="text" v-model="modifiedEmployee.last_name"
+            /></span>
+            <span class="sp-employee__row"
+              ><input type="text" v-model="modifiedEmployee.gender"
+            /></span>
+            <span class="sp-employee__row"
+              ><input type="text" v-model="modifiedEmployee.mail"
+            /></span>
+            <span class="sp-employee__row"
+              ><input type="text" v-model="modifiedEmployee.phone"
+            /></span>
             <span class="sp-employee__actions">
-              <i class="material-icons" @click="validateEdition(modifiedEmployee)">done</i>
+              <i
+                class="material-icons"
+                @click="validateEdition(modifiedEmployee)"
+                >done</i
+              >
               <i class="material-icons" @click="clearEmployee()">clear</i>
             </span>
           </form>
@@ -31,7 +49,9 @@
           <span class="sp-employee__row">{{ employee.phone }}</span>
           <span class="sp-employee__actions">
             <i class="material-icons" @click="editItem(employee)">edit</i>
-            <i class="material-icons" @click="removeItem(employee)">delete_forever</i>
+            <i class="material-icons" @click="removeItem(employee)"
+              >delete_forever</i
+            >
           </span>
         </template>
       </div>
@@ -40,7 +60,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "Display",
@@ -48,18 +68,18 @@ export default {
   data() {
     return {
       modifiedEmployee: {}
-    }
+    };
   },
 
   methods: {
-    ...mapActions(['editEmployee', 'deleteEmployee']),
+    ...mapActions(["editEmployee", "deleteEmployee"]),
 
     editItem(employee) {
       this.modifiedEmployee = JSON.parse(JSON.stringify(employee));
     },
 
     removeItem(employee) {
-      if (window.confirm('Êtes-vous sûr de vouloir supprimer cet employé ?')) {
+      if (window.confirm("Êtes-vous sûr de vouloir supprimer cet employé ?")) {
         this.deleteEmployee(employee);
       }
     },
@@ -83,7 +103,7 @@ export default {
       return this.employees.map((employee, index) => ({
         ...employee,
         index
-      }))
+      }));
     }
   }
 };
@@ -95,20 +115,20 @@ export default {
   min-width: 800px;
   max-width: 1000px;
   margin: auto;
-  border-left: 1px solid #DCE1E5;
-  border-right: 1px solid #DCE1E5;
+  border-left: 1px solid #dce1e5;
+  border-right: 1px solid #dce1e5;
 }
 
 .sp-employees {
   overflow-y: overlay;
   height: 100%;
   width: 100%;
-  color: #25292D;
+  color: #25292d;
 }
 
 .sp-employee__title {
   font-weight: bold;
-  border-bottom: 2px solid #DCE1E5 !important;
+  border-bottom: 2px solid #dce1e5 !important;
 }
 
 .sp-employee {
@@ -116,7 +136,7 @@ export default {
   padding: 0 20px;
   display: flex;
   align-items: center;
-  border-top: 1px solid #DCE1E5;
+  border-top: 1px solid #dce1e5;
 }
 
 .sp-employee > form {
