@@ -1,5 +1,7 @@
 <template>
-  <input type="file" accept=".csv" @input="inputFile"/>
+  <div class="sp-input">
+    <input type="file" accept=".csv" @input="inputFile"/>
+  </div>
 </template>
 
 <script>
@@ -23,10 +25,10 @@ export default {
 
       reader.addEventListener('load', async () => {
         try {
-        const csv = atob(reader.result.split(',')[1]);
-        const parsedCsv = await neatCsv(csv, csvHeaders);
+          const csv = atob(reader.result.split(',')[1]);
+          const parsedCsv = await neatCsv(csv, csvHeaders);
 
-        this.setEmployees(parsedCsv);
+          this.setEmployees(parsedCsv);
         } catch(err) {
           window.alert('Le fichier CSV est corrompu');
         }
@@ -37,4 +39,7 @@ export default {
 </script>
 
 <style scoped>
+.sp-input {
+  height: 100px;
+}
 </style>
