@@ -15,7 +15,7 @@
         :key="employee.index"
       >
         <template v-if="modifiedEmployee.index === employee.index">
-          <form @submit="validateEdition(modifiedEmployee)">
+          <form @submit.prevent="validateEdition(modifiedEmployee)">
             <span class="sp-employee__row"
               ><input type="text" v-model="modifiedEmployee.first_name"
             /></span>
@@ -32,11 +32,9 @@
               ><input type="text" v-model="modifiedEmployee.phone"
             /></span>
             <span class="sp-employee__actions">
-              <i
-                class="material-icons"
-                @click="validateEdition(modifiedEmployee)"
-                >done</i
-              >
+              <button type="submit">
+                <i class="material-icons">done</i>
+              </button>
               <i class="material-icons" @click="clearEmployee()">clear</i>
             </span>
           </form>
@@ -111,7 +109,7 @@ export default {
 
 <style scoped>
 .sp-display {
-  height: calc(100% - 153px);
+  height: calc(100% - 268px);
   min-width: 800px;
   max-width: 1000px;
   margin: auto;
@@ -159,9 +157,13 @@ export default {
   font-size: 16px;
 }
 
-.sp-employee__row > i {
+.sp-employee__actions > i,
+.sp-employee__actions > button {
   margin-left: 2px;
   margin-right: 2px;
   cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0 !important;
 }
 </style>
